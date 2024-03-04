@@ -5,15 +5,5 @@
   "singleQuote": true,
   "trailingComma": "all",
   "jsxSingleQuote": true,
-  "bracketSpacing": true,
-  "importOrder": [
-    "^(react/(.*)$)|^(react)",
-    "<THIRD_PARTY_MODULES>",
-    "^hooks/(.*)$|^components/(.*)$|^pages/(.*)$",
-    "^config/(.*)$|^utils/(.*)$|^(.*.data)|^api/(.*)$",
-    "^(types/(.*)$)|^(./types)",
-    "^assets/(.*)$|^(.*.scss)|^(.*.css)"
-  ],
-  "importOrderSeparation": true,
-  "importOrderSortSpecifiers": true
+  "bracketSpacing": true
 }
