@@ -29,7 +29,9 @@ export const idsSlice = createSlice({
     });
     builder.addCase(fetchItems.fulfilled, (state, action: PayloadAction<IResult<IItem[]>>) => {
       state.isLoading = false;
-      state.items = action.payload.result;
+      state.items = action.payload.result.filter((item, index, self) => {
+        return self.findIndex((selfItem) => selfItem.id === item.id) === index;
+      });
     });
     builder.addCase(fetchItems.rejected, (state, action) => {
       state.isLoading = false;

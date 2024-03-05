@@ -1,27 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import { useAppDispatch, useAppSelector } from './hooks/redux';
-import { fetchIds, fetchItems } from './store/redusers/ActionCreator';
+import 'assets/styles/normalize.scss';
+import { List } from './components';
 
 function App() {
-  const dispatch = useAppDispatch();
-  const { isLoading, items } = useAppSelector((state) => state.items);
-
-  useEffect(() => {
-    dispatch(fetchIds(0)).then(() => {
-      dispatch(fetchItems());
-    });
-  }, []);
-
-  if (isLoading) {
-    return <h1>Идет загрузка...</h1>;
-  }
-
-  return (
+    return (
     <div className='App'>
-      {items.map((item) => (
-        <span key={item.id}>{item.price}</span>
-      ))}
+      <List/>
     </div>
   );
 }
