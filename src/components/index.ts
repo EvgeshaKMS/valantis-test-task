@@ -1,3 +1,5 @@
-import List from './List/List';
+import PageWrapper from './PageWrapper/PageWrapper';
+import Loader from './Loader/Loader';
+import Router from './Router/Router';
 
-export { List };
+export { PageWrapper, Loader, Router };

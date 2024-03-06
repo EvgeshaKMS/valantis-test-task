@@ -13,4 +13,6 @@ export interface IItemsState {
   items: IItem[];
   ids: string[];
   isLoading: boolean;
+  page: number;
+  isError: boolean;
 }

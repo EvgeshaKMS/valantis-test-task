@@ -1,12 +1,19 @@
-import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+
+import store from './store/store';
+import { Router } from './components';
 
 import 'assets/styles/normalize.scss';
-import { List } from './components';
 
 function App() {
-    return (
+  return (
     <div className='App'>
-      <List/>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </Provider>
     </div>
   );
 }

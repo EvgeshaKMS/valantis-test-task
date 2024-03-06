@@ -2,28 +2,36 @@ import React, { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { fetchIds, fetchItems } from 'store/redusers/ActionCreator';
+
+import { PageWrapper } from 'components';
+import LoaderPage from 'pages/LoaderPage/LoaderPage';
+
 import styles from './List.module.scss';
 
 const List = () => {
   const dispatch = useAppDispatch();
-  const { isLoading, items } = useAppSelector((state) => state.items);
+  const { isLoading, items, isError } = useAppSelector((state) => state.items);
 
   useEffect(() => {
-    dispatch(fetchIds(1)).then(() => {
+    dispatch(fetchIds()).then(() => {
       dispatch(fetchItems());
     });
   }, []);
 
+  useEffect(() => {
+    if (isError && !isLoading) {
+      dispatch(fetchIds()).then(() => {
+        dispatch(fetchItems());
+      });
+    }
+  }, [isError]);
+
   if (isLoading) {
-    return (
-      <div className={styles.wrapper}>
-        <h1>Идет загрузка...</h1>
-      </div>
-    );
+    return <LoaderPage />;
   }
-// todo: добавить директорию pages, настроить роутинг
+
   return (
-    <div className={styles.wrapper}>
+    <PageWrapper>
       <h1>Ювелирные украшения</h1>
 
       <ul className={styles.list}>
@@ -36,7 +44,7 @@ const List = () => {
           </li>
         ))}
       </ul>
-    </div>
+    </PageWrapper>
   );
 };
 

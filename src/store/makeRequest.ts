@@ -2,12 +2,12 @@ import axios, { AxiosRequestConfig } from 'axios';
 import md5 from 'md5';
 
 import { getUTCDate } from 'hooks/getUTCDate';
-import { TAPIResponse, TRequestData } from 'types/TAPI';
+import { IAPIResponse, IRequestData } from 'types/IAPI';
 
 const makeRequest = <Type>({
   method = 'POST',
   data,
-}: AxiosRequestConfig<TRequestData>): TAPIResponse<Type> => {
+}: AxiosRequestConfig<IRequestData>): IAPIResponse<Type> => {
   const url = 'https://api.valantis.store:41000/';
 
   const headers = {

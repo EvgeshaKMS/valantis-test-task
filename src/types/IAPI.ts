@@ -1,8 +1,8 @@
 import { AxiosResponse } from 'axios';
 
-export type TAPIResponse<Type> = Promise<AxiosResponse<Type>>;
+export type IAPIResponse<Type> = Promise<AxiosResponse<Type>>;
 
-export type TRequestData = {
+export type IRequestData = {
   action: string;
   params: {
     [key: string]: any;
