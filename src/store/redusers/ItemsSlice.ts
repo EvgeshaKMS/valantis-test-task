@@ -10,7 +10,7 @@ const initialState = {
   isError: false,
 };
 
-export const idsSlice = createSlice({
+export const itemsSlice = createSlice({
   name: 'items',
   initialState,
   reducers: {
@@ -18,7 +18,10 @@ export const idsSlice = createSlice({
       state.page++;
     },
     pageDecrement(state) {
-      state.page--;
+      if (state.page !== 1) state.page--;
+    },
+    onPageChange(state, action) {
+      state.page = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -55,4 +58,4 @@ export const idsSlice = createSlice({
   },
 });
 
-export default idsSlice.reducer;
+export default itemsSlice.reducer;

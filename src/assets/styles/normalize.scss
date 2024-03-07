@@ -62,22 +62,19 @@ button,
 .App {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  background-color: #fff;
 }
 html,
 body,
 #root,
-main {
-  height: 100%;
-}
-.App > div {
-  height: 100%;
-}
-
+main,
 .App {
-  height: fit-content;
-  background-color: #fff;
+  min-height: 100vh;
+  //height: 100%;
 }
+//main {
+//  height: 100%;
+//}
 h1 {
   font-size: 36px;
 }
