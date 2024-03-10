@@ -14,5 +14,7 @@ export interface IItemsState {
   ids: string[];
   isLoading: boolean;
   page: number;
+  filterPage: number;
   isError: boolean;
+  isFilter: boolean;
 }

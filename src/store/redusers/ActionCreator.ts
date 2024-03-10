@@ -40,3 +40,18 @@ export const fetchItems = createAsyncThunk<
   }
   return rejectWithValue('No ids found');
 });
+
+export const fetchFilterIds = createAsyncThunk<
+  IResult<string[]>,
+  {[key: string]: any;},
+  { rejectValue: string }
+>('items/fetchFilterIds', async function (params, { rejectWithValue }) {
+  try {
+    const response = await makeRequest<IResult<string[]>>({
+      data: { action: 'filter', params },
+    });
+    return response.data;
+  } catch (error: any) {
+    return rejectWithValue(error.response.status);
+  }
+});
