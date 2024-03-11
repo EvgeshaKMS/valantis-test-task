@@ -27,7 +27,6 @@ export const itemsSlice = createSlice({
     builder.addCase(fetchIds.pending, (state, action) => {
       state.isLoading = true;
       state.isError = false;
-      state.page = 1;
     });
     builder.addCase(fetchIds.fulfilled, (state, action: PayloadAction<IResult<string[]>>) => {
       state.isLoading = false;

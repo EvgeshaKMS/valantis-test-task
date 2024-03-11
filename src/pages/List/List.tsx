@@ -47,7 +47,7 @@ const List = () => {
   const onReset = () => {
     form.resetFields();
     if (isFilter) {
-      fetch();
+      onPageChange(1);
     }
   };
 
