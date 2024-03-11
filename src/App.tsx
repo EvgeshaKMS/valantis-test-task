@@ -12,7 +12,7 @@ function App() {
   return (
     <div className='App'>
       <Provider store={store}>
-        <BrowserRouter basename='/'>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
           <ConfigProvider theme={antdConfig}>
             <Router />
           </ConfigProvider>
