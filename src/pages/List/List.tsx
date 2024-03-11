@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Button, Flex, Input, InputNumber, Pagination, Typography, Form, Space } from 'antd';
+import { ReloadOutlined } from '@ant-design/icons';
 
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { fetchFilterIds, fetchIds, fetchItems } from 'store/redusers/ActionCreator';
@@ -8,7 +9,7 @@ import { itemsSlice } from 'store/redusers/ItemsSlice';
 import { Loader, PageWrapper } from 'components';
 
 import styles from './List.module.scss';
-import { useSearchParams } from 'react-router-dom';
+import Item from './Item/Item';
 
 const List = () => {
   const dispatch = useAppDispatch();
@@ -19,12 +20,14 @@ const List = () => {
 
   const [form] = Form.useForm();
 
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  useEffect(() => {
+  const fetch = () => {
     dispatch(fetchIds()).then(() => {
       dispatch(fetchItems());
     });
+  };
+
+  useEffect(() => {
+    fetch();
   }, [page]);
 
   const onFinish = (e: any) => {
@@ -44,21 +47,41 @@ const List = () => {
   const onReset = () => {
     form.resetFields();
     if (isFilter) {
-      dispatch(fetchIds()).then(() => {
-        dispatch(fetchItems());
-      });
+      fetch();
+    }
+  };
+
+  const onValuesChange = () => {
+    if (
+      !form.getFieldValue('product') &&
+      !form.getFieldValue('brand') &&
+      !form.getFieldValue('price') &&
+      isFilter
+    ) {
+      fetch();
     }
   };
 
   if (isError) {
-    return <Typography.Title>Что-то пошло не так, перезагрузите страницу</Typography.Title>;
+    return (
+      <div className={styles.error}>
+        <Typography.Title>Что-то пошло не так, перезагрузите страницу</Typography.Title>
+        <Button icon={<ReloadOutlined />} size='large' type='primary' onClick={() => fetch()} />
+      </div>
+    );
   }
-
   return (
     <PageWrapper>
       <h1>Ювелирные украшения</h1>
 
-      <Form form={form} layout='vertical' onFinish={onFinish} disabled={isLoading}>
+      <Form
+        form={form}
+        onValuesChange={onValuesChange}
+        layout='vertical'
+        onFinish={onFinish}
+        disabled={isLoading}
+        className={styles.form}
+      >
         <Form.Item name='product' label='Название'>
           <Input
             onChange={() => {
@@ -100,46 +123,35 @@ const List = () => {
       {isLoading && <Loader />}
 
       {items.length > 0 && !isLoading && !isFilter && (
-        <Flex gap={20} vertical={true}>
+        <ul className={styles.list}>
           {items.map((item) => (
-            <Flex key={item.id} gap={8} vertical={true}>
-              <span>{item.id}</span>
-              <span>{item.product}</span>
-              {item.brand && <span>{item.brand}</span>}
-              <span>{item.price}</span>
-            </Flex>
+            <Item item={item} key={item.id} />
           ))}
-        </Flex>
+        </ul>
       )}
 
       {items.length > 0 && !isLoading && isFilter && (
-        <Flex gap={20} vertical={true}>
+        <ul className={styles.list}>
           {items.map((item, index) => {
             if (index >= (filterPage - 1) * 50 && index < filterPage * 50)
-              return (
-                <Flex key={item.id} gap={8} vertical={true}>
-                  <span>{item.id}</span>
-                  <span>{item.product}</span>
-                  {item.brand && <span>{item.brand}</span>}
-                  <span>{item.price}</span>
-                </Flex>
-              );
+              return <Item item={item} key={item.id} />;
           })}
-        </Flex>
+        </ul>
       )}
 
       {isFilter ? (
         <Pagination
           pageSize={50}
           total={items.length}
-          style={{ marginTop: 'auto' }}
+          className={styles.pagination}
           onChange={(page) => {
             dispatch(onFilterPageChange(page));
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
           }}
           showSizeChanger={false}
         />
       ) : (
-        <Flex gap={10} style={{ marginTop: 'auto' }}>
+        <Flex gap={10} className={styles.pagination}>
           <Button
             onClick={() => {
               dispatch(onPageChange(page - 1));

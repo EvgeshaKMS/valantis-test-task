@@ -6,12 +6,15 @@ import styles from './PageWrapper.module.scss';
 const PageWrapper = ({
   children,
   className = '',
-}: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>) => {
+  ...props
+}: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>) => {
   const mainStyles: string = clsx(className, styles.container);
 
   return (
     <main className={styles.main}>
-      <div className={mainStyles}>{children}</div>
+      <div className={mainStyles} {...props}>
+        {children}
+      </div>
     </main>
   );
 };

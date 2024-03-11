@@ -25,7 +25,7 @@ export const fetchItems = createAsyncThunk<
   { rejectValue: string; state: { items: IItemsState } }
 >('items/fetchItems', async function (_, { getState, rejectWithValue }) {
   const ids = getState().items.ids;
-  if (ids.length) {
+  if (ids.length && !getState().items.isError) {
     try {
       const response = await makeRequest<IResult<IItem[]>>({
         data: {
@@ -43,7 +43,7 @@ export const fetchItems = createAsyncThunk<
 
 export const fetchFilterIds = createAsyncThunk<
   IResult<string[]>,
-  {[key: string]: any;},
+  { [key: string]: any },
   { rejectValue: string }
 >('items/fetchFilterIds', async function (params, { rejectWithValue }) {
   try {
