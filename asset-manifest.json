@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/valantis-test-task/static/css/main.57db86e1.css",
-    "main.js": "/valantis-test-task/static/js/main.97adebc7.js",
+    "main.js": "/valantis-test-task/static/js/main.d94f8212.js",
     "static/css/825.43c5ff48.chunk.css": "/valantis-test-task/static/css/825.43c5ff48.chunk.css",
     "static/js/825.ee061ac0.chunk.js": "/valantis-test-task/static/js/825.ee061ac0.chunk.js",
     "static/js/78.5e860ac0.chunk.js": "/valantis-test-task/static/js/78.5e860ac0.chunk.js",
     "index.html": "/valantis-test-task/index.html",
     "main.57db86e1.css.map": "/valantis-test-task/static/css/main.57db86e1.css.map",
-    "main.97adebc7.js.map": "/valantis-test-task/static/js/main.97adebc7.js.map",
+    "main.d94f8212.js.map": "/valantis-test-task/static/js/main.d94f8212.js.map",
     "825.43c5ff48.chunk.css.map": "/valantis-test-task/static/css/825.43c5ff48.chunk.css.map",
     "825.ee061ac0.chunk.js.map": "/valantis-test-task/static/js/825.ee061ac0.chunk.js.map",
     "78.5e860ac0.chunk.js.map": "/valantis-test-task/static/js/78.5e860ac0.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.57db86e1.css",
-    "static/js/main.97adebc7.js"
+    "static/js/main.d94f8212.js"
   ]
 }
