@@ -2,7 +2,7 @@
   "homepage": "https://evgeshakms.github.io/valantis-test-task",
   "name": "valantis-test-task",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@ant-design/icons": "^5.3.1",
     "@reduxjs/toolkit": "^2.2.1",
